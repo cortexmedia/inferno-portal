@@ -1,0 +1,25 @@
+{
+  "name": "inferno-portal",
+  "version": "1.0.0",
+  "license": "MIT",
+  "description": "Inferno implementation of Portal component from React 16",
+  "repository": "https://github.com/cortexmedia.ca/inferno-portal",
+  "main": "index.js",
+  "typings": "index.d.ts",
+  "author": {
+    "name": "Serge Paquet",
+    "email": "spaquet@cortexstudio.com"
+  },
+  "scripts": {
+    "build": "tsc --declaration --sourceMap"
+  },
+  "peerDependencies": {
+    "inferno": ">= 3.0.0",
+    "inferno-component": ">= 3.0.0"
+  },
+  "devDependencies": {
+    "inferno": "^3.9.0",
+    "inferno-component": "^3.9.0",
+    "typescript": "^2.5.3"
+  }
+}
