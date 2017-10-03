@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "description": "Inferno implementation of Portal component from React 16",
-  "repository": "https://github.com/cortexmedia.ca/inferno-portal",
+  "repository": "https://github.com/cortexmedia/inferno-portal",
   "main": "index.js",
   "typings": "index.d.ts",
   "author": {
