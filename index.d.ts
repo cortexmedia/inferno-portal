@@ -8,5 +8,5 @@ export interface IPortalProps {
 export declare class Portal extends Component<IPortalProps, {}> {
     private defaultNode;
     componentWillUnmount(): void;
-    render(props: IPortalProps): null;
+    render(props: IPortalProps, state: {}, context: any): null;
 }

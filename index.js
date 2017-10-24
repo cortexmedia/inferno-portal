@@ -9,6 +9,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 import Inferno from 'inferno';
+import createElement from 'inferno-create-element';
 import Component from 'inferno-component';
 var Portal = /** @class */ (function (_super) {
     __extends(Portal, _super);
@@ -23,7 +24,7 @@ var Portal = /** @class */ (function (_super) {
         }
         this.defaultNode = null;
     };
-    Portal.prototype.render = function (props) {
+    Portal.prototype.render = function (props, state, context) {
         var node = props.node;
         if (node) {
             if (this.defaultNode) {
@@ -38,10 +39,27 @@ var Portal = /** @class */ (function (_super) {
                 document.body.appendChild(node);
             }
         }
-        Inferno.render(props.children || null, node);
+        var vnode = createElement(PortalContext, {
+            context: context,
+            children: props.children
+        });
+        Inferno.render(vnode, node);
         return null;
     };
     return Portal;
 }(Component));
 export { Portal };
+var PortalContext = /** @class */ (function (_super) {
+    __extends(PortalContext, _super);
+    function PortalContext() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    PortalContext.prototype.getChildContext = function () {
+        return this.props.context;
+    };
+    PortalContext.prototype.render = function (props) {
+        return props.children || null;
+    };
+    return PortalContext;
+}(Component));
 //# sourceMappingURL=index.js.map

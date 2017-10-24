@@ -1,4 +1,5 @@
-import Inferno, {InfernoChildren, InfernoInput} from 'inferno';
+import Inferno, {InfernoInput} from 'inferno';
+import createElement from 'inferno-create-element';
 import Component from 'inferno-component';
 
 export type PortalNode = Element | Node | HTMLElement | DocumentFragment | SVGAElement | null;
@@ -19,7 +20,7 @@ export class Portal extends Component<IPortalProps, {}> {
         this.defaultNode = null;
     }
 
-    public render(props: IPortalProps): null {
+    public render(props: IPortalProps, state: {}, context: any): null {
         let node = props.node;
 
         if (node) {
@@ -37,8 +38,28 @@ export class Portal extends Component<IPortalProps, {}> {
             }
         }
 
-        Inferno.render(props.children || null, node);
+        const vnode = createElement(PortalContext, {
+            context,
+            children: props.children,
+        });
+
+        Inferno.render(vnode, node);
 
         return null;
+    }
+}
+
+interface IPortalContextProps {
+    readonly context: any;
+    readonly children?: InfernoInput;
+}
+
+class PortalContext extends Component<IPortalContextProps, {}> {
+    public getChildContext(): any {
+        return this.props.context;
+    }
+
+    public render(props: IPortalContextProps): InfernoInput | null {
+        return props.children || null;
     }
 }
